@@ -23,7 +23,7 @@ app.use(cookieParser())
 
 // DB Connection
 try {
-    const connectionInstance = await mongoose.connect(`${process.env.MONGO_URL}`)
+    const connectionInstance = await mongoose.connect(`${process.env.MONGO_URL}`,{family:4})
     console.log(`\n MongoDB connected !! DB HOST: ${connectionInstance.connection.host}`);
 } catch (error) {
     console.log("MONGODB connection FAILED ", error);
