@@ -18,8 +18,7 @@ const generateAccessAndRefreshToken = async (userId) => {
 };
 
 export const SigninController = async (req, res) => {
-  const { email, username, password } = req.body;
-
+  const { email, lastname, firstname, phone, password } = req.body;
 
   try {
     const userCheck = await User.find({ email: email });
@@ -28,7 +27,7 @@ export const SigninController = async (req, res) => {
       return res.status(409).json({ error: "User already exits!" });
     }
 
-    const user = await User.create({ username, email, password });
+    const user = await User.create({ firstname, lastname, phone, email, password });
 
     const createdUser = await User.findById(user._id).select(
       "-password -refreshToken"
