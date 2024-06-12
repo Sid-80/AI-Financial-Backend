@@ -18,7 +18,7 @@ const generateAccessAndRefreshToken = async (userId) => {
 };
 
 export const SigninController = async (req, res) => {
-  const { email, username, password } = req.body;
+  const { firstname, lastname, phone, email, password } = req.body;
 
 
   try {
@@ -28,7 +28,7 @@ export const SigninController = async (req, res) => {
       return res.status(409).json({ error: "User already exits!" });
     }
 
-    const user = await User.create({ username, email, password });
+    const user = await User.create({ firstname, lastname, phone, email, password });
 
     const createdUser = await User.findById(user._id).select(
       "-password -refreshToken"
@@ -46,14 +46,14 @@ export const SigninController = async (req, res) => {
 
 export const LoginController = asyncHandler(async (req, res) => {
   try {
-    const { email, username, password } = req.body;
+    const { email,  password } = req.body;
 
-    if (!email && !username) {
+    if (!email ) {
       return res.status(400).json({ error: "Credentials error!" });
     }
 
     const user = await User.findOne({
-      $or: [{ email }, { username }],
+      $or: [{ email }],
     });
 
     if (!user) {
@@ -72,7 +72,6 @@ export const LoginController = asyncHandler(async (req, res) => {
 
     const loggedInUser = {
       _id: user._id,
-      username: user.username,
       email: user.email,
     };
 
