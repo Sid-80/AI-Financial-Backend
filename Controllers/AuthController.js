@@ -1,5 +1,5 @@
 import { User } from "../Models/UserModel.js";
-import { asyncHandler } from "../utils/AsyncHandler.js";
+import { asyncHandler } from "../Utils/AsyncHandler.js";
 import jwt from "jsonwebtoken";
 
 const generateAccessAndRefreshToken = async (userId) => {
