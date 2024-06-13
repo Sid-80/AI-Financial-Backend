@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
 import AuthRoutes from "./Routes/AuthRoutes.js"
+import ChatRoutes from "./Routes/ChatRoutes.js"
 
 dotenv.config({
   path: "./.env",
@@ -33,3 +34,4 @@ try {
 app.listen(5000, () => console.log("Running!"));
 
 app.use("/api/v1/user",AuthRoutes)
+app.use("/api/v1/chat",ChatRoutes)
