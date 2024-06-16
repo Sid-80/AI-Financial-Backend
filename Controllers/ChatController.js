@@ -3,6 +3,8 @@
 import { Chat } from "../Models/ChatModel.js";
 import { User } from "../Models/UserModel.js";
 
+import { asyncHandler } from "../Utils/AsyncHandler.js";
+
 export const createChatCore = async (userId) => {
   const user = await User.findById(userId);
   if (!user) {
@@ -66,7 +68,6 @@ export const getUserChatsCore = async (userId) => {
 
 
 
-import { asyncHandler } from "../Utils/AsyncHandler.js";
 
 // Create a new chat
 export const createChat = asyncHandler(async (req, res) => {
